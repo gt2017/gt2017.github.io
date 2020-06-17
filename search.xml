@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>vscode-cra-debug</title>
+    <url>/2020/06/17/vscode-cra-debug/</url>
+    <content><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h2 id="INTRODUCTION"><a href="#INTRODUCTION" class="headerlink" title="INTRODUCTION"></a>INTRODUCTION</h2><p>cra(create-react-app)是react官方出品的初始化react的工具.他本质是一个封装了一个webpack.而webpack是依赖node运行的.所以对cra调试, 就是对nodejs调试.</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先选择debugg, 生成一个新的launch.json文件.</p>
+<h3 id="cra官方"><a href="#cra官方" class="headerlink" title="cra官方"></a>cra官方</h3><p>链接: <a href="https://create-react-app.dev/docs/debugging-tests/" target="_blank" rel="noopener">https://create-react-app.dev/docs/debugging-tests/</a></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">  <span class="attr">"configurations"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Debug CRA Tests"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">      <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">      <span class="attr">"runtimeExecutable"</span>: <span class="string">"$&#123;workspaceRoot&#125;/node_modules/.bin/react-scripts"</span>,</span><br><span class="line">      <span class="attr">"args"</span>: [<span class="string">"test"</span>, <span class="string">"--runInBand"</span>, <span class="string">"--no-cache"</span>, <span class="string">"--watchAll=false"</span>],</span><br><span class="line">      <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceRoot&#125;"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"inspector"</span>,</span><br><span class="line">      <span class="attr">"console"</span>: <span class="string">"integratedTerminal"</span>,</span><br><span class="line">      <span class="attr">"internalConsoleOptions"</span>: <span class="string">"neverOpen"</span>,</span><br><span class="line">      <span class="attr">"env"</span>: &#123; <span class="attr">"CI"</span>: <span class="string">"true"</span> &#125;,</span><br><span class="line">      <span class="attr">"disableOptimisticBPs"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="create-react-app-rewired"><a href="#create-react-app-rewired" class="headerlink" title="create-react-app-rewired"></a>create-react-app-rewired</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">  <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Launch Program"</span>,</span><br><span class="line">  <span class="attr">"runtimeExecutable"</span>: <span class="string">"$&#123;workspaceFolder&#125;/node_modules/react-app-rewired/bin/index.js"</span>,</span><br><span class="line">  <span class="attr">"args"</span>: [<span class="string">"start"</span>],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="通过npm命令"><a href="#通过npm命令" class="headerlink" title="通过npm命令"></a>通过npm命令</h3><p>TODO:暂未成功<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Launch via npm"</span>,</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">  <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">  <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">  <span class="attr">"runtimeExecutable"</span>: <span class="string">"npm"</span>,</span><br><span class="line">  <span class="attr">"runtimeArgs"</span>: [<span class="string">"run-script"</span>, <span class="string">"start"</span>],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>以react-app-rewired为例, 在<code>override-config.js</code>中打断点就可以.</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Fully-Homomorphic-Encryption</title>
     <url>/2020/06/13/Fully-Homomorphic-Encryption/</url>
     <content><![CDATA[<p>原文: <a href="https://www.ibm.com/blogs/research/2020/06/ibm-releases-fully-homomorphic-encryption-toolkit-for-macos-and-ios-linux-and-android-coming-soon/" target="_blank" rel="noopener">https://www.ibm.com/blogs/research/2020/06/ibm-releases-fully-homomorphic-encryption-toolkit-for-macos-and-ios-linux-and-android-coming-soon/</a></p>
@@ -170,8 +182,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>翻译</tag>
         <tag>npm</tag>
+        <tag>翻译</tag>
       </tags>
   </entry>
   <entry>
@@ -244,8 +256,8 @@
 <h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>git的一部分。</p>
 ]]></content>
       <tags>
-        <tag>翻译</tag>
         <tag>git</tag>
+        <tag>翻译</tag>
       </tags>
   </entry>
   <entry>

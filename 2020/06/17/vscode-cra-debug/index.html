@@ -96,25 +96,24 @@
 
 
 
-  <meta name="description" content="abstract把要使用的软件通过dockerfile打包成一个镜像，托管到自己的registry中，这样就可以在任意别地方使用了。">
-<meta name="keywords" content="docker">
+  <meta name="description" content="摘要INTRODUCTIONcra(create-react-app)是react官方出品的初始化react的工具.他本质是一个封装了一个webpack.而webpack是依赖node运行的.所以对cra调试, 就是对nodejs调试. 配置首先选择debugg, 生成一个新的launch.json文件. cra官方链接: https://create-react-app.dev/docs/deb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用docker构建统一的开发环境">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/docker-for-dev-env/index.html">
+<meta property="og:title" content="vscode-cra-debug">
+<meta property="og:url" content="http://yoursite.com/2020/06/17/vscode-cra-debug/index.html">
 <meta property="og:site_name" content="tbswang&#39;s blogs">
-<meta property="og:description" content="abstract把要使用的软件通过dockerfile打包成一个镜像，托管到自己的registry中，这样就可以在任意别地方使用了。">
+<meta property="og:description" content="摘要INTRODUCTIONcra(create-react-app)是react官方出品的初始化react的工具.他本质是一个封装了一个webpack.而webpack是依赖node运行的.所以对cra调试, 就是对nodejs调试. 配置首先选择debugg, 生成一个新的launch.json文件. cra官方链接: https://create-react-app.dev/docs/deb">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-29T09:59:41.573Z">
+<meta property="og:updated_time" content="2020-06-17T03:07:41.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用docker构建统一的开发环境">
-<meta name="twitter:description" content="abstract把要使用的软件通过dockerfile打包成一个镜像，托管到自己的registry中，这样就可以在任意别地方使用了。">
+<meta name="twitter:title" content="vscode-cra-debug">
+<meta name="twitter:description" content="摘要INTRODUCTIONcra(create-react-app)是react官方出品的初始化react的工具.他本质是一个封装了一个webpack.而webpack是依赖node运行的.所以对cra调试, 就是对nodejs调试. 配置首先选择debugg, 生成一个新的launch.json文件. cra官方链接: https://create-react-app.dev/docs/deb">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/17/docker-for-dev-env/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/17/vscode-cra-debug/"/>
 
 
 
@@ -124,7 +123,7 @@
   };
 </script>
 
-  <title>使用docker构建统一的开发环境 | tbswang's blogs</title>
+  <title>vscode-cra-debug | tbswang's blogs</title>
   
 
 
@@ -306,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/docker-for-dev-env/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/17/vscode-cra-debug/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tbswang"/>
@@ -323,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">使用docker构建统一的开发环境
+          <h2 class="post-title" itemprop="name headline">vscode-cra-debug
 
               
             
@@ -349,24 +348,12 @@
                 
               
 
-              <time title="创建时间：2019-07-17 09:17:34" itemprop="dateCreated datePublished" datetime="2019-07-17T09:17:34+08:00">2019-07-17</time>
+              <time title="创建时间：2020-06-17 10:18:20 / 修改时间：11:07:41" itemprop="dateCreated datePublished" datetime="2020-06-17T10:18:20+08:00">2020-06-17</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-04-29 17:59:41" itemprop="dateModified" datetime="2020-04-29T17:59:41+08:00">2020-04-29</time>
               
             
           </span>
@@ -384,8 +371,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/17/docker-for-dev-env/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/17/docker-for-dev-env/" itemprop="commentCount"></span>
+                <a href="/2020/06/17/vscode-cra-debug/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/17/vscode-cra-debug/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -413,35 +400,13 @@
       
 
       
-        <h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>把要使用的软件通过dockerfile打包成一个镜像，托管到自己的registry中，这样就可以在任意别地方使用了。<br><a id="more"></a></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
-<li>安装docker</li>
-<li><p>使用如下的dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> ubuntu:<span class="number">18.04</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get  update &amp;&amp; \</span></span><br><span class="line"><span class="bash">    apt-get upgrade -y &amp;&amp; \</span></span><br><span class="line"><span class="bash">    apt-get -y install git &amp;&amp; \</span></span><br><span class="line"><span class="bash">    apt-get -y install vim &amp;&amp; \</span></span><br><span class="line"><span class="bash">    apt-get -y install curl &amp;&amp; \</span></span><br><span class="line"><span class="bash">    curl -sL https://deb.nodesource.com/setup_8.x | bash &amp;&amp; \</span></span><br><span class="line"><span class="bash">    apt-get -y install nodejs &amp;&amp; \</span></span><br><span class="line"><span class="bash">    npm install -g nrm</span></span><br><span class="line"><span class="bash">CMD git --version &amp;&amp; bash --version &amp;&amp; ssh -V &amp;&amp; npm -v &amp;&amp; node -v</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行构建命令。</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t tbswang-dev-<span class="keyword">env</span>:<span class="number">0.0</span>.<span class="number">1</span> . <span class="comment"># t表示镜像名称，版本号 .是指当前路径中的dockerfile</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="docker中常用命令"><a href="#docker中常用命令" class="headerlink" title="docker中常用命令"></a>docker中常用命令</h2><ul>
-<li><p>拉取一个docker命令</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 镜像名字</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建一个docker</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> -d -it --name my-ubuntu -v $(<span class="built_in">pwd</span>):/root ubuntu /bin/bash <span class="comment"># v后面是挂在路径，前面是主机路径，后面是docker容器内的路径</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="目前存在的问题"><a href="#目前存在的问题" class="headerlink" title="目前存在的问题"></a>目前存在的问题</h2><ol>
-<li>打包出的镜像将近300m。比较大</li>
-<li>run的时候执行</li>
-</ol>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li>dockerfile参考<a href="https://www.cnblogs.com/ityouknow/p/8595384.html" target="_blank" rel="noopener">https://www.cnblogs.com/ityouknow/p/8595384.html</a></li>
-<li>dockerfile参考 <a href="https://segmentfault.com/a/1190000007875949" target="_blank" rel="noopener">https://segmentfault.com/a/1190000007875949</a></li>
-<li>找不到npm的问题： <a href="https://askubuntu.com/questions/720784/how-to-install-latest-node-inside-a-docker-container" target="_blank" rel="noopener">https://askubuntu.com/questions/720784/how-to-install-latest-node-inside-a-docker-container</a></li>
-<li>docker build命令解析：<a href="https://zhuanlan.zhihu.com/p/38144369" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/38144369</a></li>
-<li>前端环境构建： <a href="https://juejin.im/post/5b127087e51d450686184183" target="_blank" rel="noopener">https://juejin.im/post/5b127087e51d450686184183</a></li>
-</ol>
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><h2 id="INTRODUCTION"><a href="#INTRODUCTION" class="headerlink" title="INTRODUCTION"></a>INTRODUCTION</h2><p>cra(create-react-app)是react官方出品的初始化react的工具.他本质是一个封装了一个webpack.而webpack是依赖node运行的.所以对cra调试, 就是对nodejs调试.</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先选择debugg, 生成一个新的launch.json文件.</p>
+<h3 id="cra官方"><a href="#cra官方" class="headerlink" title="cra官方"></a>cra官方</h3><p>链接: <a href="https://create-react-app.dev/docs/debugging-tests/" target="_blank" rel="noopener">https://create-react-app.dev/docs/debugging-tests/</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">  <span class="attr">"configurations"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Debug CRA Tests"</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">      <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">      <span class="attr">"runtimeExecutable"</span>: <span class="string">"$&#123;workspaceRoot&#125;/node_modules/.bin/react-scripts"</span>,</span><br><span class="line">      <span class="attr">"args"</span>: [<span class="string">"test"</span>, <span class="string">"--runInBand"</span>, <span class="string">"--no-cache"</span>, <span class="string">"--watchAll=false"</span>],</span><br><span class="line">      <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceRoot&#125;"</span>,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"inspector"</span>,</span><br><span class="line">      <span class="attr">"console"</span>: <span class="string">"integratedTerminal"</span>,</span><br><span class="line">      <span class="attr">"internalConsoleOptions"</span>: <span class="string">"neverOpen"</span>,</span><br><span class="line">      <span class="attr">"env"</span>: &#123; <span class="attr">"CI"</span>: <span class="string">"true"</span> &#125;,</span><br><span class="line">      <span class="attr">"disableOptimisticBPs"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="create-react-app-rewired"><a href="#create-react-app-rewired" class="headerlink" title="create-react-app-rewired"></a>create-react-app-rewired</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">  <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Launch Program"</span>,</span><br><span class="line">  <span class="attr">"runtimeExecutable"</span>: <span class="string">"$&#123;workspaceFolder&#125;/node_modules/react-app-rewired/bin/index.js"</span>,</span><br><span class="line">  <span class="attr">"args"</span>: [<span class="string">"start"</span>],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="通过npm命令"><a href="#通过npm命令" class="headerlink" title="通过npm命令"></a>通过npm命令</h3><p>TODO:暂未成功<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"Launch via npm"</span>,</span><br><span class="line">  <span class="attr">"type"</span>: <span class="string">"node"</span>,</span><br><span class="line">  <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">  <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">  <span class="attr">"runtimeExecutable"</span>: <span class="string">"npm"</span>,</span><br><span class="line">  <span class="attr">"runtimeArgs"</span>: [<span class="string">"run-script"</span>, <span class="string">"start"</span>],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>以react-app-rewired为例, 在<code>override-config.js</code>中打断点就可以.</p>
 
       
     </div>
@@ -463,12 +428,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/docker/" rel="tag"># docker</a>
-          
-        </div>
-      
 
       
       
@@ -478,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/17/use-compose-chain-functions/" rel="next" title="compose-函数链式执行">
-                <i class="fa fa-chevron-left"></i> compose-函数链式执行
+              <a href="/2020/06/13/Fully-Homomorphic-Encryption/" rel="next" title="Fully-Homomorphic-Encryption">
+                <i class="fa fa-chevron-left"></i> Fully-Homomorphic-Encryption
               </a>
             
           </div>
@@ -487,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/13/git-command-line-offen-used/" rel="prev" title="常用的git命令">
-                常用的git命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-number">1.</span> <span class="nav-text">abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker中常用命令"><span class="nav-number">3.</span> <span class="nav-text">docker中常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目前存在的问题"><span class="nav-number">4.</span> <span class="nav-text">目前存在的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INTRODUCTION"><span class="nav-number">2.</span> <span class="nav-text">INTRODUCTION</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cra官方"><span class="nav-number">3.1.</span> <span class="nav-text">cra官方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create-react-app-rewired"><span class="nav-number">3.2.</span> <span class="nav-text">create-react-app-rewired</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过npm命令"><span class="nav-number">3.3.</span> <span class="nav-text">通过npm命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
 
           </div>
@@ -827,9 +782,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://yoursite.com/2019/07/17/docker-for-dev-env/";
-    this.page.identifier = "2019/07/17/docker-for-dev-env/";
-    this.page.title = '使用docker构建统一的开发环境';
+    this.page.url = "http://yoursite.com/2020/06/17/vscode-cra-debug/";
+    this.page.identifier = "2020/06/17/vscode-cra-debug/";
+    this.page.title = 'vscode-cra-debug';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
