@@ -738,9 +738,8 @@
   <entry>
     <title>常用的bash命令</title>
     <url>/2020/04/29/bash-command-offen-used/</url>
-    <content><![CDATA[<ul>
-<li>查看文件夹的体积<br>  <code>du -h [target folder] | sort -h</code></li>
-</ul>
+    <content><![CDATA[<h2 id="查看文件夹的体积"><a href="#查看文件夹的体积" class="headerlink" title="查看文件夹的体积"></a>查看文件夹的体积</h2><pre><code>`du -h [target folder] | sort -h`</code></pre>
+<h2 id="占用某个端口的程序"><a href="#占用某个端口的程序" class="headerlink" title="占用某个端口的程序"></a>占用某个端口的程序</h2><p><code>lsof :i[端口号]</code></p>
 ]]></content>
       <tags>
         <tag>bash</tag>
