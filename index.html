@@ -163,6 +163,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/not-so-fast-wasm-vs-native/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="tbswang">
+      <meta itemprop="description" content="计算机技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tbswang's blogs">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/15/not-so-fast-wasm-vs-native/" class="post-title-link" itemprop="url">not-so-fast-wasm-vs-native</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-15 20:19:05" itemprop="dateCreated datePublished" datetime="2020-11-15T20:19:05+08:00">2020-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-23 15:42:20" itemprop="dateModified" datetime="2020-11-23T15:42:20+08:00">2020-11-23</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/11/15/not-so-fast-wasm-vs-native/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/15/not-so-fast-wasm-vs-native/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平均慢10％。但是，这些评估仅限于一组科学内核，每个内核包含大约100行代码。无法运行大型的应用程序，将代码编译为WebAssembly是难题的一部分,另外标准的Unix API在Web浏览器环境中不可用。为了应对这一挑战，我们构建了BROWSIX-WASM，这是对[BROWSIX][29]的重要扩展，这是第一次, 使在浏览器内直接运行的WebAssembly编译的Unix应用程序。 然后，我们使用BROWSIX-WASM对WebAssemblyvs的性能进行首次大规模评估。在SPEC CPU基准测试套件中，我们发现了巨大的性能差距：编译为WebAssembly的应用程序的运行速度平均降低了45％（Firefox）至55％（Chrome），峰值速度降低了2.08×（Firefox）和2.5×（Chrome ）。我们确定了造成这种性能下降的原因，其中一些是由于缺少优化和代码生成问题而引起的，而另一些是由于WebAssembly所固有的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/15/not-so-fast-wasm-vs-native/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/04/basic-webpack-webpack-series-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -923,92 +1009,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/docker-for-dev-env/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="tbswang">
-      <meta itemprop="description" content="计算机技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tbswang's blogs">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/17/docker-for-dev-env/" class="post-title-link" itemprop="url">使用docker构建统一的开发环境</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-07-17 09:17:34" itemprop="dateCreated datePublished" datetime="2019-07-17T09:17:34+08:00">2019-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-29 17:59:41" itemprop="dateModified" datetime="2020-04-29T17:59:41+08:00">2020-04-29</time>
-              </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2019/07/17/docker-for-dev-env/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/17/docker-for-dev-env/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h2><p>把要使用的软件通过dockerfile打包成一个镜像，托管到自己的registry中，这样就可以在任意别地方使用了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/17/docker-for-dev-env/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1078,7 +1078,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
