@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="摘要现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平均慢10％。但是，这些评估仅限于一组科学内核，每个内核包含大约100行代码。无法运行大型的应用程序，将代码编译为Web">
+  <meta name="description" content="原文: https:&#x2F;&#x2F;www.usenix.org&#x2F;system&#x2F;files&#x2F;atc19-jangda.pdf  摘要现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平">
 <meta property="og:type" content="article">
 <meta property="og:title" content="not-so-fast-wasm-vs-native">
 <meta property="og:url" content="http://yoursite.com/2020/11/15/not-so-fast-wasm-vs-native/index.html">
 <meta property="og:site_name" content="tbswang&#39;s blogs">
-<meta property="og:description" content="摘要现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平均慢10％。但是，这些评估仅限于一组科学内核，每个内核包含大约100行代码。无法运行大型的应用程序，将代码编译为Web">
+<meta property="og:description" content="原文: https:&#x2F;&#x2F;www.usenix.org&#x2F;system&#x2F;files&#x2F;atc19-jangda.pdf  摘要现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/11/15/not-so-fast-wasm-vs-native/fig1.png">
 <meta property="og:image" content="http://yoursite.com/2020/11/15/not-so-fast-wasm-vs-native/fig2.png">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/11/15/not-so-fast-wasm-vs-native/table3.png">
 <meta property="og:image" content="http://yoursite.com/2020/11/15/not-so-fast-wasm-vs-native/fig9.png">
 <meta property="article:published_time" content="2020-11-15T12:19:05.000Z">
-<meta property="article:modified_time" content="2020-11-23T07:42:20.738Z">
+<meta property="article:modified_time" content="2020-11-23T08:09:14.886Z">
 <meta property="article:author" content="tbswang">
 <meta property="article:tag" content="翻译">
 <meta name="twitter:card" content="summary">
@@ -210,7 +210,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-23 15:42:20" itemprop="dateModified" datetime="2020-11-23T15:42:20+08:00">2020-11-23</time>
+                <time title="修改时间：2020-11-23 16:09:14" itemprop="dateModified" datetime="2020-11-23T16:09:14+08:00">2020-11-23</time>
               </span>
 
           
@@ -238,7 +238,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平均慢10％。但是，这些评估仅限于一组科学内核，每个内核包含大约100行代码。无法运行大型的应用程序，将代码编译为WebAssembly是难题的一部分,另外标准的Unix API在Web浏览器环境中不可用。为了应对这一挑战，我们构建了BROWSIX-WASM，这是对[BROWSIX][29]的重要扩展，这是第一次, 使在浏览器内直接运行的WebAssembly编译的Unix应用程序。 然后，我们使用BROWSIX-WASM对WebAssemblyvs的性能进行首次大规模评估。在SPEC CPU基准测试套件中，我们发现了巨大的性能差距：编译为WebAssembly的应用程序的运行速度平均降低了45％（Firefox）至55％（Chrome），峰值速度降低了2.08×（Firefox）和2.5×（Chrome ）。我们确定了造成这种性能下降的原因，其中一些是由于缺少优化和代码生成问题而引起的，而另一些是由于WebAssembly所固有的。</p>
+        <blockquote>
+<p>原文: <a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/atc19-jangda.pdf">https://www.usenix.org/system/files/atc19-jangda.pdf</a></p>
+</blockquote>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>现在，所有主要的Web浏览器都支持WebAssembly，这是一种低级字节码，可以由C和C++代码的编译生成。WebAssembly的一个关键目标是与本机原生代码实现性能均等。之前的工作报告显示他们是几乎是等价的，许多编译到WebAssembly的应用程序的运行速度比原始代码平均慢10％。但是，这些评估仅限于一组科学内核，每个内核包含大约100行代码。无法运行大型的应用程序，将代码编译为WebAssembly是难题的一部分,另外标准的Unix API在Web浏览器环境中不可用。为了应对这一挑战，我们构建了BROWSIX-WASM，这是对[BROWSIX][29]的重要扩展，这是第一次, 使在浏览器内直接运行的WebAssembly编译的Unix应用程序。 然后，我们使用BROWSIX-WASM对WebAssemblyvs的性能进行首次大规模评估。在SPEC CPU基准测试套件中，我们发现了巨大的性能差距：编译为WebAssembly的应用程序的运行速度平均降低了45％（Firefox）至55％（Chrome），峰值速度降低了2.08×（Firefox）和2.5×（Chrome ）。我们确定了造成这种性能下降的原因，其中一些是由于缺少优化和代码生成问题而引起的，而另一些是由于WebAssembly所固有的。</p>
 <a id="more"></a>
 
 <p><img data-src="./fig1.png" alt="图片1"></p>
