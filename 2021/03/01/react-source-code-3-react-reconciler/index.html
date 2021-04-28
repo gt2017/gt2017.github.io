@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="代码结构123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293.&#x2F;packages&#x2F;react-re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-source-code-3-react-reconciler">
+<meta property="og:url" content="http://yoursite.com/2021/03/01/react-source-code-3-react-reconciler/index.html">
+<meta property="og:site_name" content="tbswang&#39;s blogs">
+<meta property="og:description" content="代码结构123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293.&#x2F;packages&#x2F;react-re">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-01T08:04:45.000Z">
+<meta property="article:modified_time" content="2021-03-01T10:18:22.316Z">
+<meta property="article:author" content="tbswang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/03/01/react-source-code-3-react-reconciler/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>react-source-code-3-react-reconciler | tbswang's blogs</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">tbswang's blogs</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/01/react-source-code-3-react-reconciler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="tbswang">
+      <meta itemprop="description" content="计算机技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tbswang's blogs">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          react-source-code-3-react-reconciler
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-01 16:04:45 / 修改时间：18:18:22" itemprop="dateCreated datePublished" datetime="2021-03-01T16:04:45+08:00">2021-03-01</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/03/01/react-source-code-3-react-reconciler/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/03/01/react-source-code-3-react-reconciler/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">./packages/react-reconciler/src</span><br><span class="line">├── DebugTracing.js</span><br><span class="line">├── MaxInts.js</span><br><span class="line">├── ReactCapturedValue.js</span><br><span class="line">├── ReactChildFiber.new.js</span><br><span class="line">├── ReactChildFiber.old.js</span><br><span class="line">├── ReactCurrentFiber.js</span><br><span class="line">├── ReactFiber.new.js</span><br><span class="line">├── ReactFiber.old.js</span><br><span class="line">├── ReactFiberBeginWork.new.js</span><br><span class="line">├── ReactFiberBeginWork.old.js</span><br><span class="line">├── ReactFiberCacheComponent.new.js</span><br><span class="line">├── ReactFiberCacheComponent.old.js</span><br><span class="line">├── ReactFiberClassComponent.new.js</span><br><span class="line">├── ReactFiberClassComponent.old.js</span><br><span class="line">├── ReactFiberCommitWork.new.js</span><br><span class="line">├── ReactFiberCommitWork.old.js</span><br><span class="line">├── ReactFiberCompleteWork.new.js</span><br><span class="line">├── ReactFiberCompleteWork.old.js</span><br><span class="line">├── ReactFiberComponentStack.js</span><br><span class="line">├── ReactFiberContext.new.js</span><br><span class="line">├── ReactFiberContext.old.js</span><br><span class="line">├── ReactFiberDevToolsHook.new.js</span><br><span class="line">├── ReactFiberDevToolsHook.old.js</span><br><span class="line">├── ReactFiberErrorDialog.js</span><br><span class="line">├── ReactFiberErrorLogger.js</span><br><span class="line">├── ReactFiberFlags.js</span><br><span class="line">├── ReactFiberHooks.new.js <span class="comment"># </span></span><br><span class="line">├── ReactFiberHooks.old.js</span><br><span class="line">├── ReactFiberHostConfig.js</span><br><span class="line">├── ReactFiberHostConfigWithNoHydration.js</span><br><span class="line">├── ReactFiberHostConfigWithNoMicrotasks.js</span><br><span class="line">├── ReactFiberHostConfigWithNoMutation.js</span><br><span class="line">├── ReactFiberHostConfigWithNoPersistence.js</span><br><span class="line">├── ReactFiberHostConfigWithNoScopes.js</span><br><span class="line">├── ReactFiberHostConfigWithNoTestSelectors.js</span><br><span class="line">├── ReactFiberHostContext.new.js</span><br><span class="line">├── ReactFiberHostContext.old.js</span><br><span class="line">├── ReactFiberHotReloading.js</span><br><span class="line">├── ReactFiberHotReloading.new.js</span><br><span class="line">├── ReactFiberHotReloading.old.js</span><br><span class="line">├── ReactFiberHydrationContext.new.js</span><br><span class="line">├── ReactFiberHydrationContext.old.js</span><br><span class="line">├── ReactFiberInterleavedUpdates.new.js</span><br><span class="line">├── ReactFiberInterleavedUpdates.old.js</span><br><span class="line">├── ReactFiberLane.new.js</span><br><span class="line">├── ReactFiberLane.old.js</span><br><span class="line">├── ReactFiberLazyComponent.new.js</span><br><span class="line">├── ReactFiberLazyComponent.old.js</span><br><span class="line">├── ReactFiberNewContext.new.js</span><br><span class="line">├── ReactFiberNewContext.old.js</span><br><span class="line">├── ReactFiberOffscreenComponent.js</span><br><span class="line">├── ReactFiberReconciler.js</span><br><span class="line">├── ReactFiberReconciler.new.js</span><br><span class="line">├── ReactFiberReconciler.old.js</span><br><span class="line">├── ReactFiberRoot.new.js</span><br><span class="line">├── ReactFiberRoot.old.js</span><br><span class="line">├── ReactFiberScope.new.js</span><br><span class="line">├── ReactFiberScope.old.js</span><br><span class="line">├── ReactFiberStack.new.js</span><br><span class="line">├── ReactFiberStack.old.js</span><br><span class="line">├── ReactFiberSuspenseComponent.new.js</span><br><span class="line">├── ReactFiberSuspenseComponent.old.js</span><br><span class="line">├── ReactFiberSuspenseContext.new.js</span><br><span class="line">├── ReactFiberSuspenseContext.old.js</span><br><span class="line">├── ReactFiberThrow.new.js</span><br><span class="line">├── ReactFiberThrow.old.js</span><br><span class="line">├── ReactFiberTransition.js</span><br><span class="line">├── ReactFiberTreeReflection.js</span><br><span class="line">├── ReactFiberUnwindWork.new.js</span><br><span class="line">├── ReactFiberUnwindWork.old.js</span><br><span class="line">├── ReactFiberWorkLoop.new.js</span><br><span class="line">├── ReactFiberWorkLoop.old.js</span><br><span class="line">├── ReactHookEffectTags.js</span><br><span class="line">├── ReactInternalTypes.js</span><br><span class="line">├── ReactMutableSource.new.js</span><br><span class="line">├── ReactMutableSource.old.js</span><br><span class="line">├── ReactPortal.js</span><br><span class="line">├── ReactProfilerTimer.new.js</span><br><span class="line">├── ReactProfilerTimer.old.js</span><br><span class="line">├── ReactRootTags.js</span><br><span class="line">├── ReactStrictModeWarnings.new.js</span><br><span class="line">├── ReactStrictModeWarnings.old.js</span><br><span class="line">├── ReactTestSelectors.js</span><br><span class="line">├── ReactTypeOfMode.js</span><br><span class="line">├── ReactUpdateQueue.new.js</span><br><span class="line">├── ReactUpdateQueue.old.js</span><br><span class="line">├── ReactWorkTags.js</span><br><span class="line">├── SchedulerWithReactIntegration.new.js</span><br><span class="line">├── SchedulerWithReactIntegration.old.js</span><br><span class="line">├── SchedulingProfiler.js</span><br><span class="line">├── __tests__</span><br><span class="line">└── forks</span><br></pre></td></tr></table></figure>
+
+<h2 id="这么多-new-和-old-是干什么用的"><a href="#这么多-new-和-old-是干什么用的" class="headerlink" title="这么多 new 和 old 是干什么用的"></a>这么多 new 和 old 是干什么用的</h2><h2 id="ReactFiberHooks-new"><a href="#ReactFiberHooks-new" class="headerlink" title="ReactFiberHooks.new"></a>ReactFiberHooks.new</h2><p>这里定义了具体的hooks的逻辑</p>
+<p>line: 2186: hooks会在三个阶段调用, mount, update, rerender</p>
+<blockquote>
+<p>为啥没有unMount阶段呢</p>
+</blockquote>
+<p>以mount中的useState为例, 调用了mountState(initialState), </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/28/react-source-code-2-react/" rel="prev" title="react源码2-react模块">
+      <i class="fa fa-chevron-left"></i> react源码2-react模块
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/11/mapbox-gl-source-code-1/" rel="next" title="mapbox-gl-源码赏析-1-map">
+      mapbox-gl-源码赏析-1-map <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">代码结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E4%B9%88%E5%A4%9A-new-%E5%92%8C-old-%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">这么多 new 和 old 是干什么用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReactFiberHooks-new"><span class="nav-number">1.2.</span> <span class="nav-text">ReactFiberHooks.new</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">tbswang</p>
+  <div class="site-description" itemprop="description">计算机技术</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tbswang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tbswang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tbswang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://tbswang.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2021/03/01/react-source-code-3-react-reconciler/";
+    this.page.identifier = "2021/03/01/react-source-code-3-react-reconciler/";
+    this.page.title = "react-source-code-3-react-reconciler";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://tbswang.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

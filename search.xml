@@ -1827,4 +1827,116 @@
         <tag>翻译</tag>
       </tags>
   </entry>
+  <entry>
+    <title>react源码</title>
+    <url>/2021/02/28/react-source-code-1/</url>
+    <content><![CDATA[<h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><p>├── create-subscription<br>├── dom-event-testing-library<br>├── eslint-plugin-react-hooks<br>├── jest-mock-scheduler<br>├── jest-react<br>├── react<br>├── react-art<br>├── react-cache<br>├── react-client<br>├── react-debug-tools<br>├── react-devtools<br>├── react-devtools-core<br>├── react-devtools-extensions<br>├── react-devtools-inline<br>├── react-devtools-scheduling-profiler<br>├── react-devtools-shared<br>├── react-devtools-shell<br>├── react-dom<br>├── react-fetch<br>├── react-fs<br>├── react-interactions<br>├── react-is<br>├── react-native-renderer<br>├── react-noop-renderer<br>├── react-pg<br>├── react-reconciler<br>├── react-refresh<br>├── react-server<br>├── react-server-dom-relay<br>├── react-server-dom-webpack<br>├── react-server-native-relay<br>├── react-suspense-test-utils<br>├── react-test-renderer<br>├── scheduler<br>├── shared<br>└── use-subscription</p>
+<p>整体代码是通过一种monorepo的方式组合.接下来,就一个一个来吧</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>可爱的算法-系列1-树</title>
+    <url>/2021/02/08/lovely-algo-1-tree/</url>
+    <content><![CDATA[<h1 id="Abastract"><a href="#Abastract" class="headerlink" title="Abastract"></a>Abastract</h1><p>算法刷多了, 还是基础总重要.</p>
+<p>从树开始, 记录一些基础的算法.以便日后查缺补漏.</p>
+]]></content>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>react源码2-react模块</title>
+    <url>/2021/02/28/react-source-code-2-react/</url>
+    <content><![CDATA[<h1 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./packages/react/src</span><br><span class="line">├── BadMapPolyfill.js</span><br><span class="line">├── IsSomeRendererActing.js</span><br><span class="line">├── React.js <span class="comment"># 入口文件</span></span><br><span class="line">├── ReactBaseClasses.js</span><br><span class="line">├── ReactChildren.js</span><br><span class="line">├── ReactContext.js</span><br><span class="line">├── ReactCreateRef.js</span><br><span class="line">├── ReactCurrentBatchConfig.js</span><br><span class="line">├── ReactCurrentDispatcher.js</span><br><span class="line">├── ReactCurrentOwner.js</span><br><span class="line">├── ReactDebugCurrentFrame.js</span><br><span class="line">├── ReactElement.js</span><br><span class="line">├── ReactElementValidator.js</span><br><span class="line">├── ReactForwardRef.js</span><br><span class="line">├── ReactHooks.js <span class="comment"># hooks的实现</span></span><br><span class="line">├── ReactLazy.js</span><br><span class="line">├── ReactMemo.js</span><br><span class="line">├── ReactMutableSource.js</span><br><span class="line">├── ReactNoopUpdateQueue.js</span><br><span class="line">├── ReactSharedInternals.js</span><br><span class="line">├── ReactStartTransition.js</span><br><span class="line">├── __tests__</span><br><span class="line">├── forks</span><br><span class="line">└── jsx</span><br></pre></td></tr></table></figure>
+
+<h2 id="ReactChildren"><a href="#ReactChildren" class="headerlink" title="ReactChildren"></a>ReactChildren</h2><p>提供React.Children的一些方法</p>
+<h2 id="ReactBaseClasses"><a href="#ReactBaseClasses" class="headerlink" title="ReactBaseClasses"></a>ReactBaseClasses</h2><p>提供Component和PureComponent</p>
+<p>依赖</p>
+<h3 id="ReactNoopUpdateQueue"><a href="#ReactNoopUpdateQueue" class="headerlink" title="ReactNoopUpdateQueue"></a>ReactNoopUpdateQueue</h3><h2 id="ReactHooks"><a href="#ReactHooks" class="headerlink" title="ReactHooks"></a>ReactHooks</h2><p>用户的api, useState, useEffect,等等.所有这些方法都是定义在ReactCurrentDispatcher.</p>
+<h3 id="ReactCurrentDispatcher"><a href="#ReactCurrentDispatcher" class="headerlink" title="ReactCurrentDispatcher"></a>ReactCurrentDispatcher</h3><h4 id="react-reconciler-src-ReactInternalTypes"><a href="#react-reconciler-src-ReactInternalTypes" class="headerlink" title="react-reconciler/src/ReactInternalTypes"></a>react-reconciler/src/ReactInternalTypes</h4><p>  Dispatcher 定义了一堆hooks的方法</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>promise 20问</title>
+    <url>/2021/02/08/20-promise-questions/</url>
+    <content><![CDATA[<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>强行收集了20个promise的问题.</p>
+<p>promise是一种异步的解决方案, 所有问题都是围绕异步展开的.而异步不外乎是: 创建, 执行, 结束.</p>
+<h2 id="创建的问题"><a href="#创建的问题" class="headerlink" title="创建的问题"></a>创建的问题</h2><h3 id="手写一个promise"><a href="#手写一个promise" class="headerlink" title="手写一个promise"></a>手写一个promise</h3><p>原理: 一开始new Promise, 都是pending状态, 每一个then, 都是push一下callback, 然后new一个新的Promise; 当变成resole, 执行callback数组里面的回调, 顺便执行将新的promise的状态变成resole. 这就是链式调用. </p>
+<h3 id="为什么then里面都是返回一个新的Promise呢-只有一个可以吗"><a href="#为什么then里面都是返回一个新的Promise呢-只有一个可以吗" class="headerlink" title="为什么then里面都是返回一个新的Promise呢? 只有一个可以吗?"></a>为什么then里面都是返回一个新的Promise呢? 只有一个可以吗?</h3><h3 id="实现Promise-any"><a href="#实现Promise-any" class="headerlink" title="实现Promise.any"></a>实现Promise.any</h3><p>有任何一个成功, 就返回成功; 否则全部失败,就返回一个 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError">AggregateError</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="实现Promise-race"><a href="#实现Promise-race" class="headerlink" title="实现Promise.race"></a>实现Promise.race</h3><h3 id="如何将callback包装成promise"><a href="#如何将callback包装成promise" class="headerlink" title="如何将callback包装成promise"></a>如何将callback包装成promise</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 将图片转换为base64</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBase64</span>(<span class="params">file</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resole, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> fr = <span class="keyword">new</span> FileReader();</span><br><span class="line">    fr.readAsDataURL(file);</span><br><span class="line">    fr.onload = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      resole(fr.result);</span><br><span class="line">    &#125;</span><br><span class="line">		fr.onerror = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">			reject(fr.error)</span><br><span class="line">		&#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行的问题"><a href="#执行的问题" class="headerlink" title="执行的问题"></a>执行的问题</h2><h3 id="promise和Settimeout"><a href="#promise和Settimeout" class="headerlink" title="promise和Settimeout"></a>promise和Settimeout</h3><p>这是关于执行顺序的问题</p>
+<h3 id="最大并发数"><a href="#最大并发数" class="headerlink" title="最大并发数"></a>最大并发数</h3><h3 id="取消执行"><a href="#取消执行" class="headerlink" title="取消执行"></a>取消执行</h3><h3 id="如何在then中reject"><a href="#如何在then中reject" class="headerlink" title="如何在then中reject"></a>如何在then中reject</h3><h3 id="超时取消执行"><a href="#超时取消执行" class="headerlink" title="超时取消执行"></a>超时取消执行</h3><h2 id="结束的问题"><a href="#结束的问题" class="headerlink" title="结束的问题"></a>结束的问题</h2><h3 id="catch和reject的区别"><a href="#catch和reject的区别" class="headerlink" title="catch和reject的区别"></a>catch和reject的区别</h3><p>异常捕获</p>
+<h2 id="多个异步链式调用"><a href="#多个异步链式调用" class="headerlink" title="多个异步链式调用"></a>多个异步链式调用</h2><h2 id="多个异步并发"><a href="#多个异步并发" class="headerlink" title="多个异步并发"></a>多个异步并发</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>手写: <a href="https://juejin.cn/post/6945319439772434469#heading-31">https://juejin.cn/post/6945319439772434469#heading-31</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>react-source-code-3-react-reconciler</title>
+    <url>/2021/03/01/react-source-code-3-react-reconciler/</url>
+    <content><![CDATA[<h1 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./packages/react-reconciler/src</span><br><span class="line">├── DebugTracing.js</span><br><span class="line">├── MaxInts.js</span><br><span class="line">├── ReactCapturedValue.js</span><br><span class="line">├── ReactChildFiber.new.js</span><br><span class="line">├── ReactChildFiber.old.js</span><br><span class="line">├── ReactCurrentFiber.js</span><br><span class="line">├── ReactFiber.new.js</span><br><span class="line">├── ReactFiber.old.js</span><br><span class="line">├── ReactFiberBeginWork.new.js</span><br><span class="line">├── ReactFiberBeginWork.old.js</span><br><span class="line">├── ReactFiberCacheComponent.new.js</span><br><span class="line">├── ReactFiberCacheComponent.old.js</span><br><span class="line">├── ReactFiberClassComponent.new.js</span><br><span class="line">├── ReactFiberClassComponent.old.js</span><br><span class="line">├── ReactFiberCommitWork.new.js</span><br><span class="line">├── ReactFiberCommitWork.old.js</span><br><span class="line">├── ReactFiberCompleteWork.new.js</span><br><span class="line">├── ReactFiberCompleteWork.old.js</span><br><span class="line">├── ReactFiberComponentStack.js</span><br><span class="line">├── ReactFiberContext.new.js</span><br><span class="line">├── ReactFiberContext.old.js</span><br><span class="line">├── ReactFiberDevToolsHook.new.js</span><br><span class="line">├── ReactFiberDevToolsHook.old.js</span><br><span class="line">├── ReactFiberErrorDialog.js</span><br><span class="line">├── ReactFiberErrorLogger.js</span><br><span class="line">├── ReactFiberFlags.js</span><br><span class="line">├── ReactFiberHooks.new.js <span class="comment"># </span></span><br><span class="line">├── ReactFiberHooks.old.js</span><br><span class="line">├── ReactFiberHostConfig.js</span><br><span class="line">├── ReactFiberHostConfigWithNoHydration.js</span><br><span class="line">├── ReactFiberHostConfigWithNoMicrotasks.js</span><br><span class="line">├── ReactFiberHostConfigWithNoMutation.js</span><br><span class="line">├── ReactFiberHostConfigWithNoPersistence.js</span><br><span class="line">├── ReactFiberHostConfigWithNoScopes.js</span><br><span class="line">├── ReactFiberHostConfigWithNoTestSelectors.js</span><br><span class="line">├── ReactFiberHostContext.new.js</span><br><span class="line">├── ReactFiberHostContext.old.js</span><br><span class="line">├── ReactFiberHotReloading.js</span><br><span class="line">├── ReactFiberHotReloading.new.js</span><br><span class="line">├── ReactFiberHotReloading.old.js</span><br><span class="line">├── ReactFiberHydrationContext.new.js</span><br><span class="line">├── ReactFiberHydrationContext.old.js</span><br><span class="line">├── ReactFiberInterleavedUpdates.new.js</span><br><span class="line">├── ReactFiberInterleavedUpdates.old.js</span><br><span class="line">├── ReactFiberLane.new.js</span><br><span class="line">├── ReactFiberLane.old.js</span><br><span class="line">├── ReactFiberLazyComponent.new.js</span><br><span class="line">├── ReactFiberLazyComponent.old.js</span><br><span class="line">├── ReactFiberNewContext.new.js</span><br><span class="line">├── ReactFiberNewContext.old.js</span><br><span class="line">├── ReactFiberOffscreenComponent.js</span><br><span class="line">├── ReactFiberReconciler.js</span><br><span class="line">├── ReactFiberReconciler.new.js</span><br><span class="line">├── ReactFiberReconciler.old.js</span><br><span class="line">├── ReactFiberRoot.new.js</span><br><span class="line">├── ReactFiberRoot.old.js</span><br><span class="line">├── ReactFiberScope.new.js</span><br><span class="line">├── ReactFiberScope.old.js</span><br><span class="line">├── ReactFiberStack.new.js</span><br><span class="line">├── ReactFiberStack.old.js</span><br><span class="line">├── ReactFiberSuspenseComponent.new.js</span><br><span class="line">├── ReactFiberSuspenseComponent.old.js</span><br><span class="line">├── ReactFiberSuspenseContext.new.js</span><br><span class="line">├── ReactFiberSuspenseContext.old.js</span><br><span class="line">├── ReactFiberThrow.new.js</span><br><span class="line">├── ReactFiberThrow.old.js</span><br><span class="line">├── ReactFiberTransition.js</span><br><span class="line">├── ReactFiberTreeReflection.js</span><br><span class="line">├── ReactFiberUnwindWork.new.js</span><br><span class="line">├── ReactFiberUnwindWork.old.js</span><br><span class="line">├── ReactFiberWorkLoop.new.js</span><br><span class="line">├── ReactFiberWorkLoop.old.js</span><br><span class="line">├── ReactHookEffectTags.js</span><br><span class="line">├── ReactInternalTypes.js</span><br><span class="line">├── ReactMutableSource.new.js</span><br><span class="line">├── ReactMutableSource.old.js</span><br><span class="line">├── ReactPortal.js</span><br><span class="line">├── ReactProfilerTimer.new.js</span><br><span class="line">├── ReactProfilerTimer.old.js</span><br><span class="line">├── ReactRootTags.js</span><br><span class="line">├── ReactStrictModeWarnings.new.js</span><br><span class="line">├── ReactStrictModeWarnings.old.js</span><br><span class="line">├── ReactTestSelectors.js</span><br><span class="line">├── ReactTypeOfMode.js</span><br><span class="line">├── ReactUpdateQueue.new.js</span><br><span class="line">├── ReactUpdateQueue.old.js</span><br><span class="line">├── ReactWorkTags.js</span><br><span class="line">├── SchedulerWithReactIntegration.new.js</span><br><span class="line">├── SchedulerWithReactIntegration.old.js</span><br><span class="line">├── SchedulingProfiler.js</span><br><span class="line">├── __tests__</span><br><span class="line">└── forks</span><br></pre></td></tr></table></figure>
+
+<h2 id="这么多-new-和-old-是干什么用的"><a href="#这么多-new-和-old-是干什么用的" class="headerlink" title="这么多 new 和 old 是干什么用的"></a>这么多 new 和 old 是干什么用的</h2><h2 id="ReactFiberHooks-new"><a href="#ReactFiberHooks-new" class="headerlink" title="ReactFiberHooks.new"></a>ReactFiberHooks.new</h2><p>这里定义了具体的hooks的逻辑</p>
+<p>line: 2186: hooks会在三个阶段调用, mount, update, rerender</p>
+<blockquote>
+<p>为啥没有unMount阶段呢</p>
+</blockquote>
+<p>以mount中的useState为例, 调用了mountState(initialState), </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>mapbox-gl-源码赏析-1-map</title>
+    <url>/2021/03/11/mapbox-gl-source-code-1/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>source-code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac上常用的app</title>
+    <url>/2021/04/28/mac-app/</url>
+    <content><![CDATA[<h2 id="必须装"><a href="#必须装" class="headerlink" title="必须装"></a>必须装</h2><ul>
+<li>alfred</li>
+<li>clashx</li>
+<li>contexts</li>
+</ul>
+<h2 id="coding"><a href="#coding" class="headerlink" title="coding"></a>coding</h2><ul>
+<li>git</li>
+<li>homebrew</li>
+<li>vscode</li>
+<li>sourcetree</li>
+<li>iterm2</li>
+<li>postman</li>
+</ul>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><ul>
+<li>chrome</li>
+<li>chrome canary</li>
+<li>firefox</li>
+<li>edge</li>
+</ul>
+<h2 id="小工具"><a href="#小工具" class="headerlink" title="小工具"></a>小工具</h2><ul>
+<li>hide bar </li>
+<li>截图</li>
+<li>pap.er</li>
+<li>notion</li>
+<li>onenote</li>
+<li>cleanmymac</li>
+<li>rectagle</li>
+<li>free download manager</li>
+<li>wechat</li>
+<li>hazeover</li>
+<li>iina</li>
+<li>maczip</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
 </search>
