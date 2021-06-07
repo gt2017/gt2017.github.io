@@ -1870,4 +1870,35 @@
         <tag>工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>前端资源汇总</title>
+    <url>/2021/06/07/frontend-resouce/</url>
+    <content><![CDATA[<p>本文主要积累在学习和从事前端工作的中使用的资料汇总</p>
+<h2 id="javascript代码规范"><a href="#javascript代码规范" class="headerlink" title="javascript代码规范"></a>javascript代码规范</h2><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>eslint</p>
+<h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>airbnb</p>
+<h2 id="组件库"><a href="#组件库" class="headerlink" title="组件库"></a>组件库</h2><ul>
+<li><p>element</p>
+</li>
+<li><p>ant design</p>
+<h2 id="react"><a href="#react" class="headerlink" title="react"></a>react</h2></li>
+</ul>
+<h2 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h2><h3 id="百度地图"><a href="#百度地图" class="headerlink" title="百度地图"></a>百度地图</h3><h3 id="高德地图"><a href="#高德地图" class="headerlink" title="高德地图"></a>高德地图</h3><h3 id="leaflet"><a href="#leaflet" class="headerlink" title="leaflet"></a>leaflet</h3><h3 id="mapbox-gl"><a href="#mapbox-gl" class="headerlink" title="mapbox-gl"></a>mapbox-gl</h3><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><ul>
+<li>echarts - 二维图表贼好用</li>
+</ul>
+<h2 id="网络图-关系图"><a href="#网络图-关系图" class="headerlink" title="网络图/关系图"></a>网络图/关系图</h2><ul>
+<li>antv g6</li>
+</ul>
+<h2 id="富文本编辑器"><a href="#富文本编辑器" class="headerlink" title="富文本编辑器"></a>富文本编辑器</h2><ul>
+<li>tinymce</li>
+<li> braft editor</li>
+</ul>
+<h2 id="拖拽"><a href="#拖拽" class="headerlink" title="拖拽"></a>拖拽</h2><ul>
+<li>react-dnd</li>
+<li>react-rnd</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>frontend</tag>
+      </tags>
+  </entry>
 </search>
