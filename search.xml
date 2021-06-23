@@ -427,6 +427,7 @@
     <url>/2019/06/12/pip-proxy/</url>
     <content><![CDATA[<h2 id="pip代理"><a href="#pip代理" class="headerlink" title="pip代理"></a>pip代理</h2><p>pip是python的包管理工具.由于某些原因, 会导致下载的包过慢或者无法下载.</p>
 <p>如何让pip走本地的代理进行下载呢, 下面给出两种情况.</p>
+<span id="more"></span>
 <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>在自己的电脑搭建了ss代理</p>
 <h3 id="未使用sudo"><a href="#未使用sudo" class="headerlink" title="未使用sudo"></a>未使用sudo</h3><p>一般情况(没有sudo),使用ss+proxifier可以直接走代理,具体速度可以在proxifer中查看</p>
 <h3 id="显示指定proxy"><a href="#显示指定proxy" class="headerlink" title="显示指定proxy"></a>显示指定proxy</h3><p>命令如此<code>pip3 --proxy 127.0.0.1:&lt;本地http代理的端口&gt; install &lt;包的名字&gt;</code></p>
@@ -942,12 +943,12 @@
   <entry>
     <title>字符串中最多的字符</title>
     <url>/2020/05/26/The-most-characters-in-a-string/</url>
-    <content><![CDATA[<p>给定一段字符串, 查找查找其中做的字符和个数.</p>
-<a id="more"></a>
+    <content><![CDATA[<p>给定一段字符串, 查找查找其中最多的字符个数.</p>
+<span id="more"></span>
 <h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>遍历所有的字符串, 记录每个字符出现的个数,然后取出最多的.</p>
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>o(n)</p>
 <h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><p>o(n)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;awfoeifaoifauwefa&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> out = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params">i <span class="keyword">of</span> str</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">!out[i]</span>)</span>&#123;</span><br><span class="line">    out[i] = <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    out[i] += <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> maxNum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> maxItem = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="function"><span class="title">for</span>(<span class="params">i <span class="keyword">in</span> out</span>)</span>&#123;</span><br><span class="line">  <span class="function"><span class="title">if</span>(<span class="params">out[i] &gt; maxNum</span>)</span>&#123;</span><br><span class="line">    maxItem = i</span><br><span class="line">    maxNum = out[i]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(maxItem, maxNum);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;awfoeifaoifauwefa&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> out = &#123;&#125;;</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">of</span> str)&#123;</span><br><span class="line">  <span class="keyword">if</span>(!out[i])&#123;</span><br><span class="line">    out[i] = <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    out[i] += <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> maxNum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> maxItem = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> out)&#123;</span><br><span class="line">  <span class="keyword">if</span>(out[i] &gt; maxNum)&#123;</span><br><span class="line">    maxItem = i</span><br><span class="line">    maxNum = out[i]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(maxItem, maxNum);</span><br></pre></td></tr></table></figure>
 
 <h2 id="方法二-删除法"><a href="#方法二-删除法" class="headerlink" title="方法二 删除法"></a>方法二 删除法</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路:"></a>思路:</h3><p>每次取出第一个元素, 然后删除全部相同的, 哪一次删除的最多, 就哪一个元素最多</p>
 <h3 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>o(n)</p>
@@ -962,11 +963,13 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;awfoeifaoifauwefa&#x27;</span>;</span><br><span class="line"></span><br><span class="line">str = str.split(<span class="string">&#x27;&#x27;</span>).sort();</span><br><span class="line"><span class="keyword">let</span> cnt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> maxNum = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> maxItem = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length -<span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (str[i+<span class="number">1</span>] === str[i]) &#123;</span><br><span class="line">    cnt++;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (cnt &gt; maxNum) &#123;</span><br><span class="line">      maxNum = cnt;</span><br><span class="line">      maxItem = str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cnt = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(maxItem, maxNum);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
-    <title>Fully-Homomorphic-Encryption</title>
+    <title>全同态加密</title>
     <url>/2020/06/13/Fully-Homomorphic-Encryption/</url>
     <content><![CDATA[<p>原文: <a href="https://www.ibm.com/blogs/research/2020/06/ibm-releases-fully-homomorphic-encryption-toolkit-for-macos-and-ios-linux-and-android-coming-soon/">https://www.ibm.com/blogs/research/2020/06/ibm-releases-fully-homomorphic-encryption-toolkit-for-macos-and-ios-linux-and-android-coming-soon/</a></p>
 <p>通常,当我和别人解释全同态加密的时候,我就说,虽然我已经在这个领域工作了将近十年, 但我也必须停下来拼出来.所以,让我们就简单的把它叫做FHE.</p>
 <p>半开玩笑的讲,当你第一次听到FHE,它听起来就像是魔法, 但是他是基于非常安全的数学.主要的区别是,FHE需要对我们常用的编程范式做一些转换,这让她在转换为应用的时候有点困难.直到今天,多亏了我们在macos,ios和接下来的linux和安卓的新工具包,才让他变得可用.事实上,对基本的平台工具熟悉的开发者, 根据一些简单的介绍,就可以快速的上手.将11年的顶级加密研究,在泡一杯咖啡或者整理桌子的时间内,转换为免费的,开发者可用的,是一个不小的壮举.<br><img src="https://www.ibm.com/blogs/research/wp-content/uploads/2020/06/FHE.png"></p>
+<span id="more"></span>
+
 <h2 id="什么是FHE"><a href="#什么是FHE" class="headerlink" title="什么是FHE?"></a>什么是FHE?</h2><p>通常用来给同事和合作伙伴存储和分享数据的方法有风险.现在,文件在传输存储的时候加密,但是在使用的时候解密.这就给黑客和内部的人很多机会泄露未加密的数据.FHE补上了这个漏洞.这可以让数据在加密的时候,让有权限的合作伙伴操作数据,这减少了他在最脆弱状态的次数.</p>
 <p>与其他技术联合,FHE也可以有选择的加密,所以人们只能看到他们可以访问的那一部分文件,或者他们工作所必须的文件.</p>
 <h2 id="1970及之前"><a href="#1970及之前" class="headerlink" title="1970及之前"></a>1970及之前</h2><p>FHE最早在1970年被提出讨论,但是真正的突破在2009,5月31号的acm会议,彼时才被证明, 加密学者Craig Gentry,在他高引用论文.ß</p>
@@ -1874,15 +1877,15 @@
     <title>前端资源汇总</title>
     <url>/2021/06/07/frontend-resouce/</url>
     <content><![CDATA[<p>本文主要积累在学习和从事前端工作的中使用的资料汇总</p>
+<span id="more"></span>
+
 <h2 id="javascript代码规范"><a href="#javascript代码规范" class="headerlink" title="javascript代码规范"></a>javascript代码规范</h2><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>eslint</p>
 <h3 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h3><p>airbnb</p>
 <h2 id="组件库"><a href="#组件库" class="headerlink" title="组件库"></a>组件库</h2><ul>
-<li><p>element</p>
-</li>
-<li><p>ant design</p>
-<h2 id="react"><a href="#react" class="headerlink" title="react"></a>react</h2></li>
+<li>element</li>
+<li>ant design</li>
 </ul>
-<h2 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h2><h3 id="百度地图"><a href="#百度地图" class="headerlink" title="百度地图"></a>百度地图</h3><h3 id="高德地图"><a href="#高德地图" class="headerlink" title="高德地图"></a>高德地图</h3><h3 id="leaflet"><a href="#leaflet" class="headerlink" title="leaflet"></a>leaflet</h3><h3 id="mapbox-gl"><a href="#mapbox-gl" class="headerlink" title="mapbox-gl"></a>mapbox-gl</h3><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><ul>
+<h2 id="react"><a href="#react" class="headerlink" title="react"></a>react</h2><h2 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h2><h3 id="百度地图"><a href="#百度地图" class="headerlink" title="百度地图"></a>百度地图</h3><h3 id="高德地图"><a href="#高德地图" class="headerlink" title="高德地图"></a>高德地图</h3><h3 id="leaflet"><a href="#leaflet" class="headerlink" title="leaflet"></a>leaflet</h3><h3 id="mapbox-gl"><a href="#mapbox-gl" class="headerlink" title="mapbox-gl"></a>mapbox-gl</h3><h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><ul>
 <li>echarts - 二维图表贼好用</li>
 </ul>
 <h2 id="网络图-关系图"><a href="#网络图-关系图" class="headerlink" title="网络图/关系图"></a>网络图/关系图</h2><ul>
