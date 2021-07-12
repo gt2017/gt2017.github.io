@@ -20,27 +20,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;yoursite.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Pisces&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;buttons&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:true,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:null,&quot;post_header&quot;:null,&quot;post_body&quot;:null,&quot;coll_header&quot;:null,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Document        body{       padding: 0;       margin: 0;     }                left       sss          right           xxxx           .container{       &#x2F;* overflow: hidden; *&#x2F;     }     .">
+<meta name="description" content="概念block formatting context    See the Pen    bfc-demo by gt2017 (@gt2017)   on CodePen.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tbswang&#39;s blogs">
-<meta property="og:url" content="http://yoursite.com/2021/06/23/double-column-layout/index/index.html">
+<meta property="og:title" content="bfc">
+<meta property="og:url" content="http://yoursite.com/2021/06/24/bfc/index.html">
 <meta property="og:site_name" content="tbswang&#39;s blogs">
-<meta property="og:description" content="Document        body{       padding: 0;       margin: 0;     }                left       sss          right           xxxx           .container{       &#x2F;* overflow: hidden; *&#x2F;     }     .">
+<meta property="og:description" content="概念block formatting context    See the Pen    bfc-demo by gt2017 (@gt2017)   on CodePen.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-23T10:22:05.213Z">
+<meta property="article:published_time" content="2021-06-24T09:14:15.000Z">
+<meta property="article:modified_time" content="2021-06-25T01:54:52.347Z">
 <meta property="article:author" content="tbswang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://yoursite.com/2021/06/23/double-column-layout/index/">
+<link rel="canonical" href="http://yoursite.com/2021/06/24/bfc/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;23&#x2F;double-column-layout&#x2F;index&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;23&#x2F;double-column-layout&#x2F;index&#x2F;&quot;,&quot;title&quot;:&quot;&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;06&#x2F;24&#x2F;bfc&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;24&#x2F;bfc&#x2F;&quot;,&quot;title&quot;:&quot;bfc&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title> | tbswang's blogs</title>
+<title>bfc | tbswang's blogs</title>
   
 
 
@@ -105,7 +105,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -118,6 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -131,7 +132,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -144,7 +145,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -188,7 +189,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/23/double-column-layout/index/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/24/bfc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -201,18 +202,19 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          bfc
         </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-23 18:22:05" itemprop="dateModified" datetime="2021-06-23T18:22:05+08:00">2021-06-23</time>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
       </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-24 17:14:15" itemprop="dateCreated datePublished" datetime="2021-06-24T17:14:15+08:00">2021-06-24</time>
+    </span>
 
   
 </div>
@@ -224,55 +226,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body{
-      padding: 0;
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-  
-  <div class="container">
-    <div class="left">left
-      <div class="hh">sss</div>
-    </div>
-    <div class="right">right</div>
-  </div>
-  <div class="footer">
-    xxxx
-  </div>
-  <style>
-    .container{
-      /* overflow: hidden; */
-    }
-    .left{
-      float: left;
-      width: 200px;
-      background-color: gray;
-      height: 200px;
-      /* height: 100vh; */
-    }
-    .right{
-      /* margin-left: 200px; */
-      background-color: lightgray;
-      height: 400px;
-      /* overflow: hidden; */
-      display: flex;
-    }
-    .footer{
-      /* clear: left; */
-    }
-  </style>
-</body>
-</html>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>block formatting context</p>
+<iframe height="300" style="width: 100%;" scrolling="no" title="bfc-demo" src="https://codepen.io/gt2017/embed/xxqovaN?defaultTab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/gt2017/pen/xxqovaN">
+  bfc-demo</a> by gt2017 (<a target="_blank" rel="noopener" href="https://codepen.io/gt2017">@gt2017</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.
+</iframe>
     </div>
 
     
@@ -290,6 +249,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/06/24/mapbox-gl-0/" rel="next" title="mapbox-gl源码—第0回浅尝辄止">
+                  mapbox-gl源码—第0回浅尝辄止 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
